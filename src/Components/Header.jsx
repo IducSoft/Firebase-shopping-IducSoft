@@ -27,13 +27,14 @@ const Header = () => {
             // The signed-in user info.
             const user = result.user;
             // ...
-            console.log(token, user)
+            
             Swal.fire(
               `${user.displayName}`,
               'you have successfully authenticated',
               'success'
             )
             dispatch({type:'LOGIN'})
+            console.log(token, user)
         }).catch((error) => {
             // Handle Errors here.
             const errorCode = error.code;
@@ -66,7 +67,7 @@ const Header = () => {
   console.log(app)
 
   return (
-    <header className='h-20 w-full shadow-lg  flex items-center justify-between px-3'>
+    <header className='h-20 w-full shadow-lg  flex items-center justify-between px-3 fixed top-0 bg-white'>
         
         <Link to="/" className='flex items-center gap-2'>
           <GiCampfire className='text-3xl text-pink-600'/>
@@ -78,7 +79,7 @@ const Header = () => {
               LogOut
             </button>
           ) : (
-            <button onClick={(e)=> LogWithGoogle()} className='btn bg-sky-600 text-white px-3 py-1 rounded-full hover:bg-sky-200 hover:text-black transition'>
+            <button onClick={(e)=> LogWithGoogle()} className='btn bg-purple-600 text-white px-3 py-1 rounded-full hover:bg-purple-200 hover:text-black transition'>
               Login
             </button>
           )}

@@ -3,11 +3,14 @@ import {createContext, useReducer } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import { app } from './firebase/firebase';
+
 import { Routes, Route, Navigate} from "react-router-dom";
 import DashBoard from './Components/DashBoard';
+import Footer from './Components/Footer';
 
 // Aqui declaro mi contexto
 export const AppContext = createContext(null);
+
 
 
 
@@ -54,10 +57,6 @@ function App() {
   // const navigate = useNavigate();
   const [state, dispatch] = useReducer(loginReducer, initialState);
   console.log(state.isLogin, app)
-
-  
-
-  
   return (
     // Nuestra aplicacion esta encerrada en un contexto.
     <AppContext.Provider value={[state, dispatch]}>
@@ -77,6 +76,7 @@ function App() {
           }
         />
         </Routes>
+        <Footer/>
       </div>
     </AppContext.Provider>
     
