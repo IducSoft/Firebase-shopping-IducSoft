@@ -18,6 +18,8 @@ export const AppContext = createContext(null);
 // Actions
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
+const GETTOKEN = 'GETTOKEN';
+const GETUSER = 'GETUSER';
 
 
 
@@ -25,6 +27,8 @@ const LOGOUT = 'LOGOUT';
 // INITIAL STATE
 const initialState = {
   isLogin: false,
+  token: null,
+  user:null
     
 }
 
@@ -42,6 +46,18 @@ const loginReducer = (state, action) => {
               ...state,
               isLogin:false
             }
+        case GETTOKEN:
+          return {
+            ...state,
+            token: action.payload
+          }
+
+        case GETUSER:
+          return{
+
+            ...state,
+            user: action.payload
+          }
         
         
         default:
@@ -56,7 +72,7 @@ function App() {
   
   // const navigate = useNavigate();
   const [state, dispatch] = useReducer(loginReducer, initialState);
-  console.log(state.isLogin, app)
+  console.log(state.isLogin, state.user, state.token, app)
   return (
     // Nuestra aplicacion esta encerrada en un contexto.
     <AppContext.Provider value={[state, dispatch]}>

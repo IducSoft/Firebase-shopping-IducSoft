@@ -34,7 +34,9 @@ const Header = () => {
               'success'
             )
             dispatch({type:'LOGIN'})
-            console.log(token, user)
+            dispatch({type: 'GETTOKEN', payload: token})
+            dispatch({type: 'GETUSER', payload: user})
+            // console.log(token, user)
         }).catch((error) => {
             // Handle Errors here.
             const errorCode = error.code;
