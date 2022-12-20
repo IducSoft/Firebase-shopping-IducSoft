@@ -3,11 +3,9 @@ import {createContext, useReducer } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import { app } from './firebase/firebase';
-
 import { Routes, Route, Navigate} from "react-router-dom";
 import DashBoard from './Components/DashBoard';
 import Footer from './Components/Footer';
-
 // Aqui declaro mi contexto
 export const AppContext = createContext(null);
 
@@ -20,6 +18,7 @@ const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 const GETTOKEN = 'GETTOKEN';
 const GETUSER = 'GETUSER';
+const GETLISTTASK = "GETLISTTASK";
 
 
 
@@ -28,7 +27,8 @@ const GETUSER = 'GETUSER';
 const initialState = {
   isLogin: false,
   token: null,
-  user:null
+  user:null,
+  ListTask:[]
     
 }
 
@@ -58,7 +58,12 @@ const loginReducer = (state, action) => {
             ...state,
             user: action.payload
           }
-        
+        case GETLISTTASK:
+          return{
+
+            ...state,
+            ListTask: [...action.payload]
+          }
         
         default:
           return{
