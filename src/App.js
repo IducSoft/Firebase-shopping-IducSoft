@@ -1,11 +1,11 @@
 import React from 'react';
 import {createContext, useReducer } from 'react';
 import './App.css';
-import Header from './Components/Header';
+// import Header from './Components/Header';
 import { app } from './firebase/firebase';
-import { Routes, Route, Navigate} from "react-router-dom";
-import DashBoard from './Components/DashBoard';
-import Footer from './Components/Footer';
+import { Routes, Route} from "react-router-dom";
+// import DashBoard from './Components/DashBoard';
+// import Footer from './Components/Footer';
 import Home from './Components/Home';
 // Aqui declaro mi contexto
 export const AppContext = createContext(null);
@@ -87,7 +87,7 @@ function App() {
         <Routes>
         <Route exact path="/" element={<Home />} />
         {/* <Route exact path="/dashboard" element={<DashBoard/>} /> */}
-        <Route
+        {/* <Route
           path="/"
           element={
             state.isLogin ? (
@@ -96,7 +96,7 @@ function App() {
               <Home />
             )
           }
-        />
+        /> */}
         </Routes>
         {/* <Footer/> */}
       </div>
