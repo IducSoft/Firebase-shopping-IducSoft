@@ -6,6 +6,7 @@ import { app } from './firebase/firebase';
 import { Routes, Route, Navigate} from "react-router-dom";
 import DashBoard from './Components/DashBoard';
 import Footer from './Components/Footer';
+import Home from './Components/Home';
 // Aqui declaro mi contexto
 export const AppContext = createContext(null);
 
@@ -82,10 +83,10 @@ function App() {
     // Nuestra aplicacion esta encerrada en un contexto.
     <AppContext.Provider value={[state, dispatch]}>
       <div className="App">
-        <Header/>
+        {/* <Header/> */}
         <Routes>
-        {/* <Route exact path="/" element={<Home />} /> */}
-        <Route exact path="/dashboard" element={<DashBoard/>} />
+        <Route exact path="/" element={<Home />} />
+        {/* <Route exact path="/dashboard" element={<DashBoard/>} /> */}
         <Route
           path="/"
           element={
@@ -97,7 +98,7 @@ function App() {
           }
         />
         </Routes>
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     </AppContext.Provider>
     
@@ -106,13 +107,7 @@ function App() {
 
 
 
-const Home =()=>{
 
-  return (
-
-    <div>Homme</div>
-  )
-}
 
 
 
