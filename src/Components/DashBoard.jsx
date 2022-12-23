@@ -2,13 +2,24 @@ import React,{ useContext, useState, useEffect } from 'react';
 import {AppContext} from "../App.js";
 import { addNewTaskToDB, deleteTaskToDB, getTasks, updateTaskToDB } from '../firebase/taskController.js';
 import Swal from 'sweetalert2';
+import {useNavigate} from "react-router-dom";
+import { GoogleAuthProvider, getAuth, signOut } from "firebase/auth";
+import { LocalStorageRemove } from '../LocalStoragePersistence.js';
 
+
+const provider = new GoogleAuthProvider();
+const auth = getAuth();
+auth.languageCode = 'it';
+// // To apply the default browser preference instead of explicitly setting it.
+// // firebase.auth().useDeviceLanguage();
 
 
 const DashBoard = () => {
   const [state, dispatch] = useContext(AppContext);
   const [task, setTask] = useState({title:"", description:"", id: null});
   const [mode, setMode] = useState("add");
+
+  const navigate = useNavigate();
 
   const makeRandomId= (length) => {
     let result = ''
@@ -76,22 +87,49 @@ const DashBoard = () => {
     })
   }
 
+  const LogOutWithGoogle=()=>{
+    signOut(auth).then(() => {
+      // Sign-out successful.
+
+      dispatch({type:'LOGOUT'})
+      navigate("/")
+      LocalStorageRemove()
+    }).catch((error) => {
+      // An error happened.
+    });
+  }
+
   useEffect(() => {
-    obtenerLista();
+    
+    // buscarLocalStorage()
+    if(state.isLogin === false){
+
+      navigate("/")
+    }
+    if(state.isLogin === true){
+      obtenerLista();
+    }
+    
     // eslint-disable-next-line
-  }, []) 
+  }, [])
+
   
-  console.log(state.ListTask)
+
+  
+  console.log(provider)
 
   return (
 
     <>
+      <div className='bg-white'>
       <div className='mt-20 bg-violet-300 px-4 py-3 my-3'>
       
       <div className='w-full text-left'>
       <h1>welcome to our App </h1>
         <span>
-          <h1>{state.user.displayName}</h1>
+          {
+            state.isLogin === true && (<h1>{state.user.displayName}</h1>)
+          }
         </span>
       
       </div>
@@ -160,9 +198,14 @@ const DashBoard = () => {
         }
         </div>
         
-        
+        <button onClick={(e)=> LogOutWithGoogle()} className='btn bg-red-600 text-white px-3 py-1 rounded-full hover:bg-red-200 hover:text-black transition'>
+              LogOut
+        </button>
         </div>
       </div>
+      </div>
+    
+      
     </>
     
   )
