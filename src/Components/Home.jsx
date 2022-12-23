@@ -89,7 +89,7 @@ const Home = () => {
                 <img src={ImageGoogle} alt="note" className='w-8 mx-3' />
                 Sign in
             </button>
-            <p className='link-to-github'>Developed By <span><a href='https://github.com/IducSoft' className='text-black ' target="_blank" rel="noreferrer">Isaac Urdaneta</a></span></p>
+            <p className='link-to-github'>Developed By <span className='ml-2'><a href='https://github.com/IducSoft' className='text-black bg-white px-2 py-1 rounded' target="_blank" rel="noreferrer">Isaac Urdaneta</a></span></p>
         </div>
     
   )
