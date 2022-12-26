@@ -146,7 +146,7 @@ const DashBoard = () => {
       <div className="flex px-3 py-2 items-center pt-6">
         <div>
           {
-            state.isLogin === true && (<img src={state.user.photoURL} className="h-6 mr-3 sm:h-9 perfil-google rounded-full" alt="Flowbite Logo" />)
+            state.isLogin === true && (<img src={state.user.photoURL} className="mr-3 sm:h-9 perfil-google rounded-full" alt="Flowbite Logo" />)
           }
         </div>
         <h2>

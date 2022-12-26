@@ -71,14 +71,6 @@ function App() {
   // const navigate = useNavigate();
   const [state, dispatch] = useReducer(loginReducer, initialState);
   console.log(state.isLogin, state.user, state.token, app)
-
-
-  
-
-
-  
-  
-
   return (
     // Nuestra aplicacion esta encerrada en un contexto.
     <AppContext.Provider value={[state, dispatch]}>
