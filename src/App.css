@@ -114,6 +114,8 @@ body {
 .dashboardcrear{
 
   position: relative;
+  min-height: 100vh;
+  
 }
 
 .modalCrearTarea{
